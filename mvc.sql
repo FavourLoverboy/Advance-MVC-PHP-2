@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2022 at 11:41 AM
+-- Generation Time: Oct 08, 2022 at 01:42 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -32,6 +32,7 @@ CREATE TABLE `tbl_login` (
   `id` int(11) NOT NULL,
   `email` varchar(20) NOT NULL,
   `password` varchar(6) NOT NULL,
+  `role` varchar(10) NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -39,9 +40,10 @@ CREATE TABLE `tbl_login` (
 -- Dumping data for table `tbl_login`
 --
 
-INSERT INTO `tbl_login` (`id`, `email`, `password`, `date`) VALUES
-(1, 'a@gmail.com', '123', '2022-10-05'),
-(2, 'b@gmail.com', '123', '2022-10-05');
+INSERT INTO `tbl_login` (`id`, `email`, `password`, `role`, `date`) VALUES
+(1, 'a@gmail.com', '123', 'admin', '2022-10-05'),
+(2, 'b@gmail.com', '123', 'user', '2022-10-05'),
+(3, 'c@gmail.com', '123', 'user', '2022-10-06');
 
 --
 -- Indexes for dumped tables
@@ -61,7 +63,7 @@ ALTER TABLE `tbl_login`
 -- AUTO_INCREMENT for table `tbl_login`
 --
 ALTER TABLE `tbl_login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
