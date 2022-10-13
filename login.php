@@ -27,13 +27,12 @@
     if($_POST['login']){
 
         extract($_POST);
-
+        $encryptPassword = $collect->epass($password);
         $tblquery = "SELECT * FROM tbl_login WHERE email = :email && password = :password";
         $tblvalue = array(
             ':email' => htmlspecialchars($email),
-            ':password' => htmlspecialchars($password)
+            ':password' => htmlspecialchars($encryptPassword)
         );
-        print_r($tblvalue);
         $select = $collect->tbl_select($tblquery, $tblvalue);
         if($select){
             foreach($select as $data){
@@ -44,11 +43,9 @@
                 $_SESSION['role'] = $role;
 
                 if($_SESSION['role'] == 'admin'){
-                    header ('Location: admin_dashboard');
-                    echo '<script> window.location="admin_dashboard"; </script>';
+                    echo "<script>  window.location='admin/dashboard' </script>";
                 }else{
-                    header ('Location: dashboard');
-                    echo '<script> window.location="dashboard"; </script>';
+                    echo "<script>  window.location='user/dashboard' </script>";
                 }
             }
         }else{

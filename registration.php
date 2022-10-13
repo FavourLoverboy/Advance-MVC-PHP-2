@@ -23,14 +23,15 @@
 
         extract($_POST);
 
-        $tblquery = "INSERT INTO tbl_login VALUES(:id, :email, :password, :date)";
+        $encryptPassword = $collect->epass($password);
+        $tblquery = "INSERT INTO tbl_login VALUES(:id, :email, :password, :role, :date)";
         $tblvalue = array(
             ':id' => NULL,
             ':email' => htmlspecialchars($email),
-            ':password' => htmlspecialchars($password),
+            ':password' => htmlspecialchars($encryptPassword),
+            ':role' => htmlspecialchars('user'),
             ':date' => date('Y-m-d')
         );
-        //print_r($tblvalue);
         $insert = $collect->tbl_insert($tblquery, $tblvalue);
         if($insert){
             echo '<script> window.location="login"; </script>';
